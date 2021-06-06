@@ -1,5 +1,5 @@
 {
-  repoPath: "repo/",
-  ipWhiteList: { "::1": { "name": "me" }},
-  port: 7005
+  "repoPath": "repo/",
+  "ipWhiteList": { "::1": { "name": "me" }},
+  "port": 7005
 }

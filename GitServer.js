@@ -1,6 +1,6 @@
 import { Git } from "./Git.js";
 import { WebServer } from "./WebServer.js";
-import { existsDirSync } from "./Webutil.js";
+import { existsDirSync } from "./WebUtil.js";
 
 const settings = JSON.stringify(await Deno.readTextFile("settings.json"));
 

@@ -1,4 +1,4 @@
-import { getQueryParam, parseURL } from "./Webutil.js";
+import { getQueryParam, parseURL } from "./WebUtil.js";
 
 class WebServer {
   constructor(port) {

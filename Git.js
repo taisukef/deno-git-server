@@ -1,10 +1,7 @@
-//const PLATFORM = "win32";
-const PLATFORM = "other";
-
 class Git {
   static async service(service, advertise, gitpath, data) {
     const cmd = [];
-    if (PLATFORM == "win32") {
+    if (Deno.build.os.toLowerCase().indexOf("win") >= 0) {
       cmd.push("git");
       cmd.push(service.substring(4));
     } else {

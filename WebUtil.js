@@ -44,4 +44,16 @@ const existsDirSync = (path) => { // for Deno
   }
 };
 
-export { existsDirSync, getQueryParam, parseURL };
+const fetchJSON = async (path) => {
+  try {
+    if (globalThis.Deno) {
+      return JSON.parse(await Deno.readTextFile(path));
+    } else {
+      return await (await fetch(path)).json();
+    }
+  } catch (e) {
+    return null;
+  }
+}
+
+export { existsDirSync, getQueryParam, parseURL, fetchJSON };

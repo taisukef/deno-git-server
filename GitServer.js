@@ -1,12 +1,12 @@
 import { Git } from "./Git.js";
 import { WebServer } from "./WebServer.js";
-import { existsDirSync } from "./WebUtil.js";
+import { existsDirSync, fetchJSON } from "./WebUtil.js";
 
-const settings = JSON.stringify(await Deno.readTextFile("settings.json"));
+const settings = fetchJSON("settings.json");
 
-const REPO_PATH = settings.repoPath || "repo/";
-const IP_WHITELIST = settings.ipWhiteList || { "::1": { "name": "me" }};
-const PORT = settings.port || 7005;
+const REPO_PATH = settings?.repoPath || "repo/";
+const IP_WHITELIST = settings?.ipWhiteList || { "::1": { "name": "me" }};
+const PORT = settings?.port || 7005;
 
 class GitServer extends WebServer {
   async handle(req) {

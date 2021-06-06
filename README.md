@@ -14,9 +14,19 @@ runs on localhost:7005
 make some dir
 ```
 git init
+```
+commit some file
+```
 touch a.txt
 git add .
 git commit -m test
-git remote add origin http://localhost:7005/nn
+```
+push to deno-git-server
+```
+git remote add origin http://localhost:7005/test
 git push --set-upstream origin master
+```
+or
+```
+git push http://localhost:7005/test master
 ```

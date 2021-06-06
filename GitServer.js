@@ -15,6 +15,7 @@ class GitServer extends WebServer {
     if (!name) {
       return null;
     }
+    //console.log(req);
 
     const n = req.path.indexOf("/", 1);
     const repo = req.path.substring(1, n);

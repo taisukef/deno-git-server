@@ -23,14 +23,15 @@ class Git {
       stderr: "piped",
     });
     if (data) {
-      await p.stdin.write(data);
+      //await p.stdin.writeAll(data);
+      await Deno.writeAll(p.stdin, data);
       await p.stdin.close();
     }
     const output = await p.output();
     const error = await p.stderrOutput();
     const errorStr = new TextDecoder().decode(error);
     p.close();
-    //console.log("stdout", outStr)
+    //console.log("stdout", new TextDecoder().decode(output));
     if (errorStr) {
       console.log("stderr", errorStr)
     }

@@ -4,6 +4,7 @@ A configurable git server written in Deno
 
 ## install
 
+Install [Deno](https://deno.land) and type this
 ```
 deno run -A --unstable https://taisukef.github.io/deno-git-server/GitServer.js
 ```

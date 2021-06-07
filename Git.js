@@ -1,18 +1,11 @@
 class Git {
   static async service(service, advertise, gitpath, data) {
-    const cmd = [];
-    if (Deno.build.os.toLowerCase().indexOf("win") >= 0) {
-      cmd.push("git");
-      cmd.push(service.substring(4));
-    } else {
-      cmd.push(service);
-    }
+    const cmd = this.getCommand(service);
     cmd.push("--stateless-rpc");
     if (advertise) {
       cmd.push("--advertise-refs");
     }
     cmd.push(gitpath);
-    //console.log(cmd);
     const p = Deno.run({
       cmd,
       stdin: "piped",
@@ -41,8 +34,7 @@ class Git {
     } catch (e) {
     }
 
-    const cmd = [];
-    cmd.push("git");
+    const cmd = this.getCommand();
     cmd.push("init");
     if (bare) {
       cmd.push("--bare");
@@ -61,6 +53,22 @@ class Git {
     p.close();
     //console.log("stdout", outStr);
     //console.log("stderr", errorStr);
+  }
+  static getCommand(service) {
+    const cmd = [];
+    if (Deno.build.os.toLowerCase().indexOf("windows") >= 0) { // or darwin
+      cmd.push("git.exe");
+      if (service) {
+        cmd.push(service.substring(4));
+      }
+    } else {
+      if (service) {
+        cmd.push(service);
+      } else {
+        cmd.push("git");
+      }
+    }
+    return cmd;
   }
 }
 

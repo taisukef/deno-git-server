@@ -26,6 +26,7 @@ class GitServer extends WebServer {
 
     if (service == "info/refs") {
       const pservice = req.getQueryParam("service");
+      console.log(REPO_PATH + repo)
       if (pservice == "git-receive-pack" && !existsDirSync(REPO_PATH + repo)) {
         await Git.init(REPO_PATH + repo);
       }

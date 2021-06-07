@@ -1,6 +1,9 @@
-class Git {
+class GitProxy {
   static async service(service, advertise, gitpath, data) {
-    const cmd = this.getCommand(service);
+    const cmd = ["git"];
+    if (service) {
+      cmd.push(service.substring(4));
+    }
     cmd.push("--stateless-rpc");
     if (advertise) {
       cmd.push("--advertise-refs");
@@ -34,7 +37,7 @@ class Git {
     } catch (e) {
     }
 
-    const cmd = this.getCommand();
+    const cmd = ["git"];
     cmd.push("init");
     if (bare) {
       cmd.push("--bare");
@@ -54,22 +57,6 @@ class Git {
     //console.log("stdout", outStr);
     //console.log("stderr", errorStr);
   }
-  static getCommand(service) {
-    const cmd = [];
-    if (Deno.build.os.toLowerCase().indexOf("windows") >= 0) { // or darwin
-      cmd.push("git.exe");
-      if (service) {
-        cmd.push(service.substring(4));
-      }
-    } else {
-      if (service) {
-        cmd.push(service);
-      } else {
-        cmd.push("git");
-      }
-    }
-    return cmd;
-  }
 }
 
-export { Git };
+export { GitProxy };

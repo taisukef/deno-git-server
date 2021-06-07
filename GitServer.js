@@ -1,4 +1,4 @@
-import { Git } from "./Git.js";
+import { GitProxy } from "./GitProxy.js";
 import { WebServer } from "./WebServer.js";
 import { existsDirSync, fetchJSON } from "./WebUtil.js";
 
@@ -28,14 +28,14 @@ class GitServer extends WebServer {
       const pservice = req.getQueryParam("service");
       console.log(REPO_PATH + repo)
       if (pservice == "git-receive-pack" && !existsDirSync(REPO_PATH + repo)) {
-        await Git.init(REPO_PATH + repo);
+        await GitProxy.init(REPO_PATH + repo);
       }
-      const res = await Git.service(pservice, true, REPO_PATH + repo);
+      const res = await GitProxy.service(pservice, true, REPO_PATH + repo);
       return this.createResponseGitAdvertise(res, pservice, "advertisement");
     }
 
     const text = new Uint8Array(await req.arrayBuffer());
-    const res = await Git.service(service, false, REPO_PATH + repo, text);
+    const res = await GitProxy.service(service, false, REPO_PATH + repo, text);
     return this.createResponseGit(res, service, "result");
   }
 

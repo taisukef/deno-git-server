@@ -2,7 +2,7 @@ import { GitProxy } from "./GitProxy.js";
 import { WebServer } from "./WebServer.js";
 import { existsDirSync, fetchJSON } from "./WebUtil.js";
 
-const settings = fetchJSON("settings.json");
+const settings = await fetchJSON("settings.json");
 
 const REPO_PATH = settings?.repoPath || "repo/";
 const IP_WHITELIST = settings?.ipWhiteList || { "::1": { "name": "me" }};

@@ -1,7 +1,4 @@
 import { GitProxy } from "./GitProxy.js";
-//import { WebServer } from "./WebServer.js";
-//import { serve } from "https://js.sabae.cc/wsutil.js";
-//import { serve as _serve } from "https://deno.land/std@0.157.0/http/server.ts";
 import { existsDirSync, fetchJSON } from "./WebUtil.js";
 import { serve } from "https://deno.land/std@0.173.0/http/server.ts";
 
@@ -39,7 +36,6 @@ const createResponseGit = (text, service, type) => {
 const hostname = "::";
 
 serve(async (req, conn) => {
-  console.log(req, conn);
   const url = new URL(req.url);
   req.path = url.pathname;
   req.param = url.searchParams;

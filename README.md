@@ -7,7 +7,7 @@ A configurable git server written in Deno
 1. Install [Git](https://github.com/git/git) and [Deno](https://deno.land)
 2. Type this in your console
 ```
-deno run -A --unstable https://taisukef.github.io/deno-git-server/GitServer.js
+deno run -A https://taisukef.github.io/deno-git-server/GitServer.js
 ```
 runs on localhost:7005
 
@@ -34,6 +34,8 @@ git push http://localhost:7005/test master
 ```
 
 ## links
+
 - [Git](https://github.com/git/git)
 - [Deno](https://github.com/denoland)
 - [node-git-server](https://www.npmjs.com/package/node-git-server)
+- [blog](https://fukuno.jig.jp/3237)
